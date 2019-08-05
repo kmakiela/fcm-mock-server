@@ -1,0 +1,10 @@
+[	{"status":200,
+	"reason":"InvalidRegistration",
+	"device_token":"androidtestdeviceid63"},
+
+	{"status":200,
+	"reason":"InvalidRegistration",
+	"device_token":"androidtestdeviceid53",
+	"timestamp":123,
+	"Hallelujah":"Yes"}
+]
