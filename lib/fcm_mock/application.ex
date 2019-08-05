@@ -9,9 +9,14 @@ defmodule FcmMock.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      FcmMockWeb.Endpoint
+      FcmMockWeb.Endpoint,
       # Starts a worker by calling: FcmMock.Worker.start_link(arg)
       # {FcmMock.Worker, arg},
+
+      # Mock State contains setups of error configurations for device tokens
+      FcmMock.Mock.State,
+      # Fcm Activity contains activity logs
+      FcmMock.Fcm.Activity
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
