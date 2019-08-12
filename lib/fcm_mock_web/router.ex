@@ -20,4 +20,5 @@ defmodule FcmMockWeb.Router do
   end
 
   post "/v1/:project_id/messages:send", FcmMockWeb.FcmController, :send
+  get "/healthcheck", FcmMockWeb.HealthcheckController, :check
 end
