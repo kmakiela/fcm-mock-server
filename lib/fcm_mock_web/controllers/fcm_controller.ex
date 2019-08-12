@@ -6,23 +6,25 @@ defmodule FcmMockWeb.FcmController do
   alias FcmMock.Fcm
   def send(conn, params) do
     key_auth = conn |> get_req_header(@key_auth_id)
-    IO.inspect(["KEY AUTH", key_auth])
-    IO.inspect(conn)
     case key_auth do
       [] ->
         conn
-        |> put_status(401) # 401 = UNAUTHORIZED
-        |> send_resp()
+        |> send_resp(401, "Authorization header is required")
+
       _ ->
-        json_payload =
-          params
-          |> Map.get("_json")
-        headers =
-          conn
-          |>
-        Fcm.send(conn, json_payload)
+        headers = conn.req_headers
+        path = conn.request_path
+
+        response = Fcm.send(path, headers, params)
+          |> convert_response_to_json()
+
         conn
-        |> send_resp(200, "Sent\n")
+         |> send_resp(200, response)
     end
+  end
+
+  defp convert_response_to_json(response_body) do
+    response_body
+      |> Jason.encode!()
   end
 end

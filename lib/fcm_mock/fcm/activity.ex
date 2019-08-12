@@ -5,7 +5,7 @@ defmodule FcmMock.Fcm.Activity do
   use Agent
 
   def start_link(_opts) do
-    Agent.start_link(fn -> %{} end, name: __MODULE__)
+    Agent.start_link(fn -> [] end, name: __MODULE__)
   end
 
   def get_activity do
@@ -13,6 +13,6 @@ defmodule FcmMock.Fcm.Activity do
   end
 
   def add_activity(activity) do
-    Agent.update(__MODULE__, fn state ->  Map.merge(state, activity) end)
+    Agent.update(__MODULE__, fn state -> [activity | state] end)
   end
 end

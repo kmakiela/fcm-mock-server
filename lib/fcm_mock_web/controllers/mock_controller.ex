@@ -2,10 +2,11 @@ defmodule FcmMockWeb.MockController do
   use FcmMockWeb, :controller
 
   alias FcmMock.Mock
+  alias FcmMock.Fcm
 
   def get_tokens(conn, _params) do
     errors = Mock.get_error_tokens()
-    |> convert_state_to_json
+    |> convert_to_json
     conn
     |> send_resp(200, errors)
   end
@@ -19,7 +20,7 @@ defmodule FcmMockWeb.MockController do
 
     errors =
       Mock.get_error_tokens()
-      |> convert_state_to_json()
+      |> convert_to_json()
 
     conn
     |> send_resp(200, errors)
@@ -27,21 +28,23 @@ defmodule FcmMockWeb.MockController do
 
   def reset(conn, _params) do
     Mock.reset()
+    Fcm.reset()
 
     conn
     |> send_resp(200, "OK")
   end
 
   def activity(conn, _params) do
-    Mock.get_activity(conn)
+    activity =
+      Fcm.get_activity()
+      |> convert_to_json()
 
     conn |>
-    send_resp(200, "GET-ACTIVITY")
+    send_resp(200, activity)
   end
 
-  defp convert_state_to_json(state) do
-    IO.inspect(["STATE: ", state])
-    state
+  defp convert_to_json(object) do
+    object
     |> Jason.encode!()
   end
 end
