@@ -4,6 +4,7 @@ defmodule FcmMock.Mock do
   """
 
   alias FcmMock.Mock.State
+  alias FcmMock.Fcm
 
   @key_device_token "device_token"
   @key_status "status"
@@ -38,8 +39,8 @@ defmodule FcmMock.Mock do
   @doc """
   Returns activity dump
   """
-  def get_activity(conn) do
-    IO.inspect(conn)
+  def get_activity() do
+    Fcm.get_activity()
   end
 
   defp convert_error(error_map) do
