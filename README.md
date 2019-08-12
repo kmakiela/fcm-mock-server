@@ -1,18 +1,20 @@
-# FcmMock
+# Fcm Mock Server (Docker)
+FCM v1 Mock for testing server applications
 
-To start your Phoenix server:
+## Running
+The docker container is available under `kmakiela/fcm-mock-server`.  
+It exposes port `4000` and you need to map it to the port of your choice (`-p` option).  
+To run, type:
+```
+docker run -p 4000:4000 kmakiela/fcm-mock-server
+```
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server`
+## API
+FCM endpoints:
+* **POST** */v1/:project_id/messages:send* - Main FCM endpoint for sending notifications. Requires `authorization` header
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Mock endpoints:
+* **POST or PUT** */mock/error-tokens* - Sets `HTTP` *error code* and *error reason* for *device tokens*. Payload should be `JSON` list of objects with required fields: `device_token`, `status`, `reason`
+* **GET** */mock/error-tokens* - Returns current error-per-token configuration
+* **GET** */mock/activity* - Returns the history of calls to `FCM` API of this mock
+* **POST or PUT** */mock/reset* - Resets error-per-token configuration and clears `FCM` activity history
