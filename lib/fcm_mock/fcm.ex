@@ -36,9 +36,11 @@ defmodule FcmMock.Fcm do
 
         _ ->
           %{
-            code: Map.fetch!(error, @key_status),
-            status: Map.fetch!(error, @key_reason),
-            message: ""
+            error: %{
+              code: Map.fetch!(error, @key_status),
+              status: Map.fetch!(error, @key_reason),
+              message: ""
+            }
           }
     end
     mapped_headers =
