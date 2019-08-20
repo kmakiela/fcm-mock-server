@@ -15,11 +15,11 @@ defmodule FcmMockWeb.FcmController do
         headers = conn.req_headers
         path = conn.request_path
 
-        response = Fcm.send(path, headers, params)
-          |> convert_response_to_json()
+        response_body = Fcm.send(path, headers, params)
+        response =  convert_response_to_json(response_body)
 
         conn
-         |> send_resp(200, response)
+         |> send_resp(response_body[:error][:code] || 200, response)
     end
   end
 

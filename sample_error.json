@@ -1,9 +1,9 @@
-[	{"status":200,
-	"reason":"InvalidRegistration",
+[	{"status":400,
+	"reason":"InVALID_ARGUMENT",
 	"device_token":"androidtestdeviceid63"},
 
-	{"status":200,
-	"reason":"InvalidRegistration",
+	{"status":404,
+	"reason":"UNREGISTERED",
 	"device_token":"androidtestdeviceid53",
 	"timestamp":123,
 	"Hallelujah":"Yes"}
