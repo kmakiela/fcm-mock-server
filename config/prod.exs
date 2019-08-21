@@ -14,6 +14,7 @@ config :fcm_mock, FcmMockWeb.Endpoint,
   server: true,
   root: ".",
   version: Application.spec(:fcm_mock, :vsn),
+  http: [port: 4001],
   https: [
     :inet6,
     port: 4000,

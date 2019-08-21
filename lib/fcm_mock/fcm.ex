@@ -74,6 +74,17 @@ defmodule FcmMock.Fcm do
   def get_activity do
     Activity.get_activity()
   end
+
+  @doc """
+  Mocks OAuth server behaviour, more info on: https://developers.google.com/identity/protocols/OAuth2ServiceAccount#authorizingrequests
+  """
+  def get_access_token do
+    %{
+      access_token: "fake_token",
+      token_type: "Bearer",
+      expires_in: 3600
+    }
+  end
 end
 
 

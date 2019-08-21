@@ -3,10 +3,10 @@ FCM v1 Mock for testing server applications
 
 ## Running
 The docker container is available under `kmakiela/fcm-mock-server`.  
-It exposes port `4000` and you need to map it to the port of your choice (`-p` option).  
+It exposes ports: `4000` (https) and `4001` (http) and you need to map it to the port of your choice (`-p` option).  
 To run, type:
 ```
-docker run -p 4000:4000 kmakiela/fcm-mock-server
+docker run -p 4000:4000 -p 4001:4001 kmakiela/fcm-mock-server
 ```
 
 ## API

@@ -83,7 +83,7 @@ RUN chown -R app /app
 USER app
 
 # API
-EXPOSE 4000
+EXPOSE 4000 4001
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
         CMD curl --silent --fail -k https://localhost:4000/healthcheck

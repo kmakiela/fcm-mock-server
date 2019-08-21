@@ -23,6 +23,16 @@ defmodule FcmMockWeb.FcmController do
     end
   end
 
+  def get_access_token(conn, _params) do
+    response =
+      Fcm.get_access_token()
+      |> convert_response_to_json()
+
+    conn
+      |> send_resp(200, response)
+
+  end
+
   defp convert_response_to_json(response_body) do
     response_body
       |> Jason.encode!()
