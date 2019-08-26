@@ -13,10 +13,10 @@ defmodule FcmMock.Application do
       # Starts a worker by calling: FcmMock.Worker.start_link(arg)
       # {FcmMock.Worker, arg},
 
-      # Mock State contains setups of error configurations for device tokens
-      FcmMock.Mock.State,
-      # Fcm Activity contains activity logs
-      FcmMock.Fcm.Activity
+      # ErrorConfig State contains setups of error configurations for device tokens
+      FcmMock.Mock.ErrorConfig.State,
+      # Activity State contains activity logs
+      FcmMock.Mock.Activity.State
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

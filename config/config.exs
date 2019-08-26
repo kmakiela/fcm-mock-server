@@ -9,10 +9,18 @@ use Mix.Config
 
 # Configures the endpoint
 config :fcm_mock, FcmMockWeb.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "DB2RWgRcAG/NjLOWqIZATiBhyNCuH1s3GmRfB+jeGqVJg1lSnerLNf5mW09OYQ20",
-  render_errors: [view: FcmMockWeb.ErrorView, accepts: ~w(json)],
-  pubsub: [name: FcmMock.PubSub, adapter: Phoenix.PubSub.PG2]
+  url: [host: "localhost", port: 4000],
+  server: true,
+  root: ".",
+  version: Application.spec(:fcm_mock, :vsn),
+  http: [port: 4001],
+  https: [
+    :inet6,
+    port: 4000,
+    cipher_suite: :compatible,
+    keyfile: "priv/ssl/fake_key.pem",
+    certfile: "priv/ssl/fake_cert.pem"
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,

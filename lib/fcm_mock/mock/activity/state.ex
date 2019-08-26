@@ -1,4 +1,4 @@
-defmodule FcmMock.Fcm.Activity do
+defmodule FcmMock.Mock.Activity.State do
   @moduledoc """
   Module that stores FCM activity using Agent
   """
@@ -14,5 +14,9 @@ defmodule FcmMock.Fcm.Activity do
 
   def add_activity(activity) do
     Agent.update(__MODULE__, fn state -> [activity | state] end)
+  end
+
+  def reset do
+    Agent.update(__MODULE__, fn _activity -> [] end)
   end
 end

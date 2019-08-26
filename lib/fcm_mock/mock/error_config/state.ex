@@ -1,4 +1,4 @@
-defmodule FcmMock.Mock.State do
+defmodule FcmMock.Mock.ErrorConfig.State do
   @moduledoc """
   Mock State that stores a set of tokens and their setup using Agent
   """
@@ -14,5 +14,9 @@ defmodule FcmMock.Mock.State do
 
   def add_error_tokens(error_token_map) do
     Agent.update(__MODULE__, fn state ->  Map.merge(state, error_token_map) end)
+  end
+
+  def reset do
+    Agent.update(__MODULE__, fn _state -> %{} end)
   end
 end

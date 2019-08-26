@@ -1,6 +1,6 @@
-defmodule FcmMockWeb.HealthcheckController do
+defmodule FcmMockWeb.SystemController do
   use FcmMockWeb, :controller
-  def check(conn, _params) do
+  def healthcheck(conn, _params) do
     conn
     |> send_resp(200, "")
   end
