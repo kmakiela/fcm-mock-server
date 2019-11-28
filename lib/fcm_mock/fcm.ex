@@ -53,6 +53,7 @@ defmodule FcmMock.Fcm do
       target: target,
       request_headers: mapped_headers,
       request_data: json,
+      request_path: path,
       status: 200,
       response_data: response_body
     }
